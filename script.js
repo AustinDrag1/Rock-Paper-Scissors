@@ -14,8 +14,10 @@ function getComputerChoice()
 // Compare choices, award points if a winner, and update result element
 function playRound( e )
 {
-    // Confirm selection
+    // Validate choice then get computer choice
     const humanChoice = e.target.name;
+    if( !["rock", "paper", "scissors"].includes(humanChoice) ) return;
+
     const computerChoice = getComputerChoice();
     let result;
 
@@ -54,17 +56,17 @@ function updateResultDisplay( result, humanChoice, computerChoice )
 
     if( result === "win" )
     {
-        display = "You won! (" + humanChoice + " beats " + computerChoice + ")</p>";
+        display = "You won! (<strong>" + humanChoice + "</strong> beats " + computerChoice + ")</p>";
 
     }
     else if( result === "loss" )
     {
-        display = "You lost (" + computerChoice + " beats " + humanChoice + ")</p>";
+        display = "You lost (" + computerChoice + " beats <strong>" + humanChoice + "</strong>)</p>";
 
     }
     else
     {
-        display = "It's a tie (you both chose " + computerChoice + ")</p>";
+        display = "It's a tie (you both chose <strong>" + computerChoice + "</strong>)</p>";
     }
 
     display += "<p>You: " + humanScore + "</p><p>Computer: " + computerScore + "</p>";
